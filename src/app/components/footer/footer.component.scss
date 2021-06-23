@@ -1,0 +1,18 @@
+@import "../../scss/includes.scss";
+
+.root {
+  @include grid(32);
+
+  .container {
+    @include grid-column-span(32);
+
+    .content {
+      @include center();
+      margin-top: 8px;
+
+      span {
+        margin: 0 4px 0 4px;
+      }
+    }
+  }
+}

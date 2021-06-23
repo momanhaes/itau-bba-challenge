@@ -1,0 +1,28 @@
+@import "../../scss/includes.scss";
+
+.root {
+  @include grid(32);
+
+  .container {
+    @include grid-column-span(32);
+
+    .content {
+      @include center();
+
+      .form {
+        text-align: center;
+        margin: 64px;
+
+        button {
+          font-family: $font-montserrat;
+          background: $color-primary;
+          color: $color-white;
+          border-radius: 6px;
+          font-weight: bold;
+          font-size: 16px;
+          padding: 4px 48px 4px 48px;
+        }
+      }
+    }
+  }
+}

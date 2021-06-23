@@ -1,0 +1,22 @@
+@import "../../scss/includes.scss";
+
+.header {
+  border-bottom: 3px solid $color-primary;
+  background: $color-secondary;
+  color: $color-black;
+  height: 120px;
+
+  .root {
+    @include grid(32);
+
+    .container {
+      @include grid-column-span(32);
+
+      .content {
+        @include between();
+        flex-wrap: wrap;
+        padding: 0 140px 0 140px;
+      }
+    }
+  }
+}
