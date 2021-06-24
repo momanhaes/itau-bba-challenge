@@ -15,7 +15,11 @@
       .content {
         @include between();
         flex-wrap: wrap;
-        padding: 0 140px 0 140px;
+        padding: 0 100px 0 100px;
+
+        img {
+          width: 7%;
+        }
       }
     }
   }

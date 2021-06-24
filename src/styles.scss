@@ -1,3 +1,21 @@
+@use '~@angular/material' as mat;
+@include mat.core();
+
+$itau-bba-primary: mat.define-palette(mat.$indigo-palette);
+$itau-bba-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$itau-bba-warn: mat.define-palette(mat.$red-palette);
+$itau-bba-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $itau-bba-primary,
+      accent: $itau-bba-accent,
+      warn: $itau-bba-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($itau-bba-theme);
+
 @import "app/scss/includes.scss";
 
 *,
@@ -26,14 +44,6 @@ hr {
   color: $color-black;
 }
 
-thead,
-tr,
-th,
-tr,
-td {
-  color: $color-black;
-}
-
 p {
   color: $color-black;
   font-size: 1rem;
@@ -49,6 +59,8 @@ body {
   scroll-behavior: smooth;
   line-height: 1.25;
   font-size: 16px;
+  height: 100%;
+  margin: 0;
 }
 
 img {
@@ -83,10 +95,4 @@ a {
   position: absolute;
   left: 50%;
   top: 50%;
-}
-
-.swal2-popup .swal2-styled {
-  &:focus {
-    box-shadow: none !important;
-  }
 }

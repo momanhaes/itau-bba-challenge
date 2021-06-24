@@ -11,18 +11,8 @@
       margin: 16px;
 
       .table {
-        text-align: center;
+        width: 90%;
         margin: 64px;
-
-        button {
-          font-family: $font-montserrat;
-          background: $color-primary;
-          color: $color-white;
-          border-radius: 6px;
-          font-weight: bold;
-          font-size: 16px;
-          padding: 4px 48px 4px 48px;
-        }
       }
     }
   }
