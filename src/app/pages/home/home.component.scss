@@ -6,14 +6,40 @@
   .container {
     @include grid-column-span(32);
 
+    .header {
+      @include between();
+      margin: 40px 6% 0;
+
+      .title {
+        font-weight: bold;
+        font-size: 28px;
+      }
+
+      .subtitle {
+        font-size: 20px;
+      }
+    }
+
     .content {
       @include center();
       margin: 16px;
 
       .table {
         width: 90%;
-        margin: 64px;
       }
     }
   }
+}
+
+// Replicate Angular Material Input Color
+::ng-deep .mat-focused .mat-form-field-label {
+  color: $color-primary !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  background-color: $color-primary !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  background-color: $color-primary !important;
 }

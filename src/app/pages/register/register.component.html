@@ -10,6 +10,17 @@
 
             <div>
               <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Nome</mat-label>
+                <input
+                  formControlName="name"
+                  matInput
+                  placeholder="Ex. João da Silva"
+                />
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Email</mat-label>
                 <input
                   formControlName="email"
@@ -31,10 +42,10 @@
             </div>
 
             <div>
-              <app-button (click)="login()" label="Acessar"></app-button>
+              <app-button (click)="register()" label="Cadastrar"></app-button>
             </div>
             <div>
-              <button routerLink="/register" mat-button>Cadastre-se</button>
+              <button routerLink="/login" mat-button>Voltar ao login</button>
             </div>
           </form>
         </mat-card>

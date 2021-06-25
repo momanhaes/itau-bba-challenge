@@ -15,10 +15,10 @@
       .content {
         @include between();
         flex-wrap: wrap;
-        padding: 0 100px 0 100px;
+        padding: 40px 5% 30px;
 
         img {
-          width: 7%;
+          width: 100px;
         }
       }
     }

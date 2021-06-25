@@ -1,20 +1,28 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { SituationType, TableDataSource, TableItem } from './table-datasource';
+import { TableDataSource } from './table-datasource';
+import { IBusiness } from './table.interface';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<TableItem>;
+export class TableComponent implements AfterViewInit, OnInit {
+  @ViewChild(MatPaginator) public paginator!: MatPaginator;
+  @ViewChild(MatTable) public table!: MatTable<IBusiness>;
+  @ViewChild(MatSort) public sort!: MatSort;
+  @Input() public data!: IBusiness[];
 
-  public dataSource: TableDataSource;
+  public dataSource!: TableDataSource;
   public displayedColumns = [
     'name',
     'business',
@@ -23,14 +31,14 @@ export class TableComponent implements AfterViewInit {
     'action',
   ];
 
-  constructor() {
-    this.dataSource = new TableDataSource();
+  constructor() {}
+
+  public getDotSituation(active: boolean): string {
+    return active ? 'fa fa-circle color-green' : 'fa fa-circle color-red';
   }
 
-  public getDotSituation(situation: SituationType): string {
-    return situation === SituationType.AVAILABLE
-      ? 'fa fa-circle color-green'
-      : 'fa fa-circle color-red';
+  ngOnInit(): void {
+    this.dataSource = new TableDataSource(this.data);
   }
 
   ngAfterViewInit(): void {

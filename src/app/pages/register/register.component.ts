@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { APPEARD } from 'src/app/animations/appeard.animation';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
   animations: [APPEARD],
 })
-export class LoginPageComponent implements OnInit {
+export class RegisterPageComponent implements OnInit {
   public form!: FormGroup;
   public state = 'ready';
 
@@ -17,13 +17,14 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
+      name: new FormControl(''),
       email: new FormControl(''),
       password: new FormControl(''),
     });
   }
 
-  public login() {
+  public register() {
     console.log(this.form.value);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 }

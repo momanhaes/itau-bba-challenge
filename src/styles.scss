@@ -96,3 +96,16 @@ a {
   left: 50%;
   top: 50%;
 }
+
+// Replicate Angular Material Input Select Color
+.mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $color-primary !important;
+}
+
+.mat-select-arrow {
+  color: $color-primary !important;
+}
+
+.mat-paginator-icon {
+  color: $color-primary !important;
+}

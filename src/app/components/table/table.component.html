@@ -22,7 +22,7 @@
     <ng-container matColumnDef="situation">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Situação</th>
       <td class="situation" mat-cell *matCellDef="let row">
-        <i [class]="getDotSituation(row.situation)"></i>
+        <i [class]="getDotSituation(row.active)"></i>
       </td>
     </ng-container>
 

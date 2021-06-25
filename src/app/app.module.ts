@@ -13,16 +13,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './pages/login/login.component';
 import { HomePageComponent } from './pages/home/home.component';
+import { RegisterPageComponent } from './pages/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ButtonComponent } from './components/button/button.component';
 import { TableComponent } from './components/table/table.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 import { WindowService } from './services/window.service';
+import { BusinessService } from './services/business.service';
+import { SessionStorageService } from './services/session-storage.service';
 
 import { ResizeDirective } from './directives/resize.directive';
 import { ROUTES } from './app.routes';
@@ -32,17 +38,19 @@ import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localePt, 'pt');
 
-const SERVICES = [WindowService];
+const SERVICES = [WindowService, BusinessService, SessionStorageService];
 
 const DECLARATIONS = [
   AppComponent,
   ResizeDirective,
   LoginPageComponent,
   HomePageComponent,
+  RegisterPageComponent,
   HeaderComponent,
   FooterComponent,
   ButtonComponent,
   TableComponent,
+  SpinnerComponent,
 ];
 
 const ANGULAR_MODULES = [
@@ -52,6 +60,7 @@ const ANGULAR_MODULES = [
   ReactiveFormsModule,
   HttpClientModule,
   FormsModule,
+  MatCardModule,
 ];
 
 const MATERIAL_MODULES = [
@@ -62,6 +71,7 @@ const MATERIAL_MODULES = [
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
+  MatInputModule,
 ];
 
 @NgModule({

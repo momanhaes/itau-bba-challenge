@@ -3,61 +3,17 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { IBusiness } from './table.interface';
 
-export enum SituationType {
-  UNAVAILABLE = 'UNAVAILABLE',
-  AVAILABLE = 'AVAILABLE',
-}
-
-export interface TableItem {
-  id: string;
-  name: string;
-  business: string;
-  valuation: number;
-  situation: string;
-}
-
-const DATA: TableItem[] = [
-  {
-    id: '123',
-    name: 'Itaú BBA',
-    business: 'Financial Center',
-    valuation: 850000000.5,
-    situation: SituationType.AVAILABLE,
-  },
-  {
-    id: '321',
-    name: 'Itaú Ceic',
-    business: 'Centro Empresarial Itaú',
-    valuation: 54000000.45,
-    situation: SituationType.AVAILABLE,
-  },
-  {
-    id: '231',
-    name: 'Cubo Itaú',
-    business: 'Startups Center',
-    valuation: 22000000000.2,
-    situation: SituationType.AVAILABLE,
-  },
-  {
-    id: '132',
-    name: 'Itaú Disabled',
-    business: 'Polo Fake',
-    valuation: 0,
-    situation: SituationType.UNAVAILABLE,
-  },
-];
-
-export class TableDataSource extends DataSource<TableItem> {
+export class TableDataSource extends DataSource<IBusiness> {
   public paginator: MatPaginator | undefined;
   public sort: MatSort | undefined;
-  public data: TableItem[] = DATA;
 
-  constructor() {
+  constructor(public data: IBusiness[]) {
     super();
   }
 
-  connect(): Observable<TableItem[]> {
+  connect(): Observable<IBusiness[]> {
     if (this.paginator && this.sort) {
       return merge(
         observableOf(this.data),
@@ -77,7 +33,15 @@ export class TableDataSource extends DataSource<TableItem> {
 
   disconnect(): void {}
 
-  private getPagedData(data: TableItem[]): TableItem[] {
+  private compare(
+    a: string | number | boolean,
+    b: string | number | boolean,
+    isAsc: boolean
+  ): number {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
+  private getPagedData(data: IBusiness[]): IBusiness[] {
     if (this.paginator) {
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       return data.splice(startIndex, this.paginator.pageSize);
@@ -86,33 +50,26 @@ export class TableDataSource extends DataSource<TableItem> {
     }
   }
 
-  private getSortedData(data: TableItem[]): TableItem[] {
+  private getSortedData(data: IBusiness[]): IBusiness[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }
 
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
+
       switch (this.sort?.active) {
         case 'name':
-          return compare(a.name, b.name, isAsc);
+          return this.compare(a.name, b.name, isAsc);
         case 'business':
-          return compare(a.business, b.business, isAsc);
+          return this.compare(a.business, b.business, isAsc);
         case 'valuation':
-          return compare(+a.valuation, +b.valuation, isAsc);
-        case 'situation':
-          return compare(+a.situation, +b.situation, isAsc);
+          return this.compare(+a.valuation, +b.valuation, isAsc);
+        case 'active':
+          return this.compare(a.active, b.active, isAsc);
         default:
           return 0;
       }
     });
   }
-}
-
-function compare(
-  a: string | number,
-  b: string | number,
-  isAsc: boolean
-): number {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
