@@ -16,19 +16,33 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 
-import { AppComponent } from './app.component';
+import { NgxMaskModule } from 'ngx-mask';
+import {
+  CurrencyMaskModule,
+  CurrencyMaskConfig,
+  CURRENCY_MASK_CONFIG,
+} from 'ng2-currency-mask';
+
 import { LoginPageComponent } from './pages/login/login.component';
 import { HomePageComponent } from './pages/home/home.component';
 import { RegisterPageComponent } from './pages/register/register.component';
+import { BusinessPageComponent } from './pages/business/business.component';
+import { NotFoundPageComponent } from './pages/not-found/not-found.component';
+
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ButtonComponent } from './components/button/button.component';
 import { TableComponent } from './components/table/table.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { InputComponent } from './components/input/input.component';
+import { CepComponent } from './components/cep/cep.component';
 
 import { WindowService } from './services/window.service';
 import { BusinessService } from './services/business.service';
 import { SessionStorageService } from './services/session-storage.service';
+import { FormatterLib } from 'src/lib/formatter.lib';
+import { CEPService } from './services/cep.service';
 
 import { ResizeDirective } from './directives/resize.directive';
 import { ROUTES } from './app.routes';
@@ -36,9 +50,27 @@ import { ROUTES } from './app.routes';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: 'left',
+  allowNegative: true,
+  decimal: ',',
+  precision: 2,
+  prefix: '',
+  suffix: '',
+  thousands: '.',
+};
+
 registerLocaleData(localePt, 'pt');
 
-const SERVICES = [WindowService, BusinessService, SessionStorageService];
+const PROVIDERS = [
+  WindowService,
+  BusinessService,
+  SessionStorageService,
+  FormatterLib,
+  CEPService,
+  { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
+  { provide: LOCALE_ID, useValue: 'pt' },
+];
 
 const DECLARATIONS = [
   AppComponent,
@@ -46,12 +78,18 @@ const DECLARATIONS = [
   LoginPageComponent,
   HomePageComponent,
   RegisterPageComponent,
+  BusinessPageComponent,
+  NotFoundPageComponent,
   HeaderComponent,
   FooterComponent,
   ButtonComponent,
   TableComponent,
   SpinnerComponent,
+  InputComponent,
+  CepComponent
 ];
+
+const EXTERNAL_MODULES = [NgxMaskModule.forRoot(), CurrencyMaskModule];
 
 const ANGULAR_MODULES = [
   RouterModule.forRoot(ROUTES),
@@ -76,8 +114,8 @@ const MATERIAL_MODULES = [
 
 @NgModule({
   declarations: [...DECLARATIONS],
-  imports: [...ANGULAR_MODULES, ...MATERIAL_MODULES],
-  providers: [...SERVICES, { provide: LOCALE_ID, useValue: 'pt' }],
+  imports: [...ANGULAR_MODULES, ...MATERIAL_MODULES, ...EXTERNAL_MODULES],
+  providers: [...PROVIDERS],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

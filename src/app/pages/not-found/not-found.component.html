@@ -1,0 +1,13 @@
+<div class="root">
+  <div class="container-root">
+    <div class="container" [@appeard]="state">
+      <h2 class="title">PÁGINA NÃO ENCONTRADA</h2>
+      <div class="text-center">
+        <h3>Imaginamos que você tenha acessado o caminho "<strong>{{ path }}</strong>" por engano. 
+            Clique no botão abaixo e navegue até a página inicial.
+        </h3>
+        <app-button routerLink='/home' label="Voltar pro início"></app-button>
+      </div>
+    </div>
+  </div>
+</div>

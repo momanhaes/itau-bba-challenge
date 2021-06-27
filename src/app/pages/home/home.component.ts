@@ -10,7 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { FormControl, FormGroup } from '@angular/forms';
 import { APPEARD } from 'src/app/animations/appeard.animation';
 
-interface IError {
+export interface IError {
   isError: boolean;
   origin: string;
   content: any;
@@ -45,7 +45,7 @@ export class HomePageComponent implements OnInit {
     this.getData();
     this.searchForm = new FormGroup({ searchControl: new FormControl('') });
     this.searchForm.valueChanges.subscribe((searchTerm) => {
-      console.log(searchTerm);
+      console.log(`Deve chamar endpoint passando o termo '${searchTerm}'`);
     });
   }
 

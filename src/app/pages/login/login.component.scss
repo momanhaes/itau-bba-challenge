@@ -3,7 +3,7 @@
 .root {
   @include grid(32);
 
-  .container {
+  .container-fluid {
     @include grid-column-span(32);
 
     .content {

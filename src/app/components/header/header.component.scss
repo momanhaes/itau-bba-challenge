@@ -9,13 +9,21 @@
   .root {
     @include grid(32);
 
-    .container {
+    .container-fluid {
       @include grid-column-span(32);
+      padding: 0 128px;
+
+      @include large-and-down() {
+        padding: 0px 32px;
+      }
+
+      @include small-and-down() {
+        padding: 0 8px;
+      }
 
       .content {
         @include between();
         flex-wrap: wrap;
-        padding: 40px 5% 30px;
 
         img {
           width: 100px;

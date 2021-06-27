@@ -5,10 +5,10 @@
 
   .container {
     @include grid-column-span(32);
+    margin-top: 32px;
 
     .content {
       @include center();
-      margin-top: 8px;
 
       span {
         margin: 0 4px 0 4px;

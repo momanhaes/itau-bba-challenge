@@ -1,0 +1,11 @@
+<app-input
+  placeholder="Digite seu CEP"
+  control="cep"
+  [required]="true"
+  label="CEP"
+  [form]="form"
+  type="cep"
+>
+</app-input>
+
+<p *ngIf="isLoading">Carregando endereço...</p>

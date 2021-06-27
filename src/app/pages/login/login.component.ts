@@ -10,8 +10,8 @@ import { APPEARD } from 'src/app/animations/appeard.animation';
   animations: [APPEARD],
 })
 export class LoginPageComponent implements OnInit {
-  public form!: FormGroup;
   public state = 'ready';
+  public form!: FormGroup;
 
   constructor(private router: Router) {}
 
@@ -23,7 +23,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   public login() {
-    console.log(this.form.value);
     this.router.navigate(['/home']);
   }
 }

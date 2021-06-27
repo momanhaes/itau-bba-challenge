@@ -8,6 +8,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { TableDataSource } from './table-datasource';
 import { IBusiness } from './table.interface';
 
@@ -31,10 +32,14 @@ export class TableComponent implements AfterViewInit, OnInit {
     'action',
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   public getDotSituation(active: boolean): string {
     return active ? 'fa fa-circle color-green' : 'fa fa-circle color-red';
+  }
+
+  public edit(business: IBusiness): void {
+    this.router.navigate(['business-register', business.id]);
   }
 
   ngOnInit(): void {

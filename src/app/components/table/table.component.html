@@ -29,7 +29,7 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Ação</th>
       <td class="action" mat-cell *matCellDef="let row">
-        <i class="fa fa-eye"></i>
+        <i class="fa fa-eye" (click)="edit(row)"></i>
       </td>
     </ng-container>
 

@@ -1,0 +1,32 @@
+<label class="font-weight-bold">
+  {{ label }}
+  <span class="text-danger" *ngIf="required">*</span>
+</label>
+
+<form [formGroup]="form">
+  <input
+    *ngIf="type !== 'currency'"
+    [formControlName]="control"
+    type="text"
+    [mask]="mask"
+    [required]="required"
+    [placeholder]="placeholder"
+    class="form-control"
+  />
+
+  <input
+    *ngIf="type === 'currency'"
+    currencyMask
+    [formControlName]="control"
+    type="text"
+    [required]="required"
+    [placeholder]="placeholder"
+    class="form-control"
+  />
+</form>
+
+<div *ngIf="hasError" class="text-danger mt-2">
+  <div *ngIf="isRequiredError" class="text text-danger">
+    {{ label }} é obrigatório.
+  </div>
+</div>

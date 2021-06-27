@@ -24,7 +24,6 @@ export class RegisterPageComponent implements OnInit {
   }
 
   public register() {
-    console.log(this.form.value);
     this.router.navigate(['/login']);
   }
 }

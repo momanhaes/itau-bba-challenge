@@ -37,29 +37,27 @@
       }
     }
 
-    .content {
-      @include center();
+    .loading {
+      margin-top: 24px;
+    }
 
-      .table-width {
-        width: 100%;
+    .form {
+      margin-top: 44px;
+
+      legend {
+        font-size: 16px;
+        margin-bottom: 16px;
       }
     }
 
-    .button {
-      @include end();
+    .buttons {
+      @include start();
+      flex-wrap: wrap;
+      margin-top: 24px;
+
+      app-button {
+        margin-right: 16px;
+      }
     }
   }
-}
-
-// Replicate Angular Material Input Color
-::ng-deep .mat-focused .mat-form-field-label {
-  color: $color-primary !important;
-}
-
-::ng-deep.mat-form-field-underline {
-  background-color: $color-primary !important;
-}
-
-::ng-deep.mat-form-field-ripple {
-  background-color: $color-primary !important;
 }

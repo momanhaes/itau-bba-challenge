@@ -1,0 +1,91 @@
+<div class="root">
+  <div class="container-fluid">
+    <div class="header" *ngIf="!isLoading" [@appeard]="state">
+      <div class="header-content">
+        <p *ngIf="!data" class="title">Novo Polo</p>
+        <p *ngIf="data" class="title">Polo {{ data?.name }}</p>
+        <p *ngIf="data" class="subtitle">
+          Exibindo detalhes do polo {{ data?.name }}#{{ data?.id }}
+        </p>
+      </div>
+    </div>
+
+    <div class="loading">
+      <h3 *ngIf="isLoading">
+        <app-spinner label="Carregando polo..." [size]="2"> </app-spinner>
+      </h3>
+    </div>
+
+    <div class="form" *ngIf="!isLoading">
+      <form [formGroup]="form" [@appeard]="state">
+        <legend>Detalhes do endereço</legend>
+
+        <div class="form-row">
+          <app-cep
+            (addressByCepEvent)="getAddress($event)"
+            class="form-group col-12 col-md-2"
+            [form]="form"
+          ></app-cep>
+
+          <ng-container *ngFor="let input of addressInputs">
+            <div [class]="input.class">
+              <app-input
+                [form]="form"
+                [label]="input.label"
+                [placeholder]="input.placeholder"
+                [control]="input.control"
+                [type]="input.type"
+                [required]="input.required"
+              ></app-input>
+            </div>
+          </ng-container>
+        </div>
+
+        <legend class="mt-4">Detalhes da empresa</legend>
+        <div class="form-row">
+          <ng-container *ngFor="let input of businessInputs">
+            <div [class]="input.class">
+              <app-input
+                [form]="form"
+                [label]="input.label"
+                [placeholder]="input.placeholder"
+                [control]="input.control"
+                [type]="input.type"
+                [required]="input.required"
+              ></app-input>
+            </div>
+          </ng-container>
+
+          <div class="form-group col-12 col-md-2">
+            <label class="font-weight-bold">
+              Ativo?
+              <span class="text-danger">*</span>
+            </label>
+            <select class="custom-select" required formControlName="active">
+              <option disabled selected value="">Escolha uma opção</option>
+              <option
+                *ngFor="let status of businessStatus"
+                [value]="status.value"
+              >
+                {{ status.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="buttons" *ngIf="!isLoading" [@appeard]="state">
+      <app-button routerLink="/home" theme="secondary" label="Voltar">
+      </app-button>
+
+      <app-button
+        (click)="action()"
+        theme="primary"
+        label="Salvar"
+        [disabled]="form.invalid"
+      >
+      </app-button>
+    </div>
+  </div>
+</div>

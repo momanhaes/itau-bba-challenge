@@ -15,4 +15,10 @@ export class BusinessService {
       `${BUSINESS_API}${this.itauEndpoint}`
     );
   }
+
+  public businessById(id: string): Observable<IBusiness> {
+    return this.httpClient.get<IBusiness>(
+      `${BUSINESS_API}${this.itauEndpoint}/${id}`
+    );
+  }
 }

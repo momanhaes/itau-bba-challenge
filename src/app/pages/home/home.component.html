@@ -1,24 +1,22 @@
 <div class="root">
-  <div class="container">
+  <div class="container-fluid">
     <div class="header" *ngIf="!isLoading && data.length" [@appeard]="state">
-      <div>
+      <div class="header-content">
         <p class="title">Polos Itaú</p>
         <p class="subtitle">
           Confira abaixo alguns dos principais polos do Itaú
         </p>
       </div>
 
-      <div>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Pesquisar...</mat-label>
-          <form [formGroup]="searchForm">
-            <input
-              matInput
-              formControlName="searchControl"
-              placeholder="Ex. Itaú BBA"
-            />
-          </form>
-        </mat-form-field>
+      <div class="search">
+        <form [formGroup]="searchForm">
+          <input
+            type="text"
+            formControlName="searchControl"
+            class="form-control"
+            placeholder="Pesquisar..."
+          />
+        </form>
       </div>
     </div>
 
@@ -27,13 +25,29 @@
         <app-spinner label="Carregando polos..." [size]="2"> </app-spinner>
       </h3>
 
-      <div class="table" *ngIf="!isLoading && data.length" [@appeard]="state">
+      <div
+        class="table-width"
+        *ngIf="!isLoading && data.length"
+        [@appeard]="state"
+      >
         <app-table [data]="data"></app-table>
       </div>
 
       <p *ngIf="!isLoading && !data.length" [@appeard]="state">
         Não foram encontrados polos cadastrados <i class="fa fa-frown-o"></i>
       </p>
+    </div>
+
+    <div class="button">
+      <app-button
+        *ngIf="!isLoading"
+        class="mt-4"
+        [@appeard]="state"
+        routerLink="/business-register"
+        theme="primary"
+        label="Adicionar"
+      >
+      </app-button>
     </div>
   </div>
 </div>
