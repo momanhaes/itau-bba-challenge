@@ -13,7 +13,7 @@ import { APPEARD } from 'src/app/animations/appeard.animation';
 export interface IError {
   isError: boolean;
   origin: string;
-  content: any;
+  content: any; // TODO: Corrigir tipagem
 }
 
 @Component({
@@ -45,7 +45,10 @@ export class HomePageComponent implements OnInit {
     this.getData();
     this.searchForm = new FormGroup({ searchControl: new FormControl('') });
     this.searchForm.valueChanges.subscribe((searchTerm) => {
-      console.log(`Deve chamar endpoint passando o termo '${searchTerm}'`);
+      // TODO: Deve chamar o endpoint de busca
+      console.log(
+        `Deve chamar o endpoint de busca passando o termo '${searchTerm.searchControl}'`
+      );
     });
   }
 

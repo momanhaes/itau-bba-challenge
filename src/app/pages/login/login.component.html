@@ -8,31 +8,27 @@
               <i class="fa fa-user-circle user"></i>
             </div>
 
-            <div>
+            <div *ngFor="let input of loginInputs">
               <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Email</mat-label>
+                <mat-label>{{ input.label }}</mat-label>
                 <input
-                  formControlName="email"
+                  [formControlName]="input.control"
+                  [type]="input.control"
+                  [required]="input.required"
+                  [placeholder]="input.placeholder"
                   matInput
-                  placeholder="Ex. joao@email.com"
                 />
               </mat-form-field>
             </div>
 
             <div>
-              <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Senha</mat-label>
-                <input
-                  formControlName="password"
-                  matInput
-                  placeholder="•••••••"
-                />
-              </mat-form-field>
+              <app-button
+                (click)="login()"
+                label="Acessar"
+                [disabled]="form.invalid"
+              ></app-button>
             </div>
 
-            <div>
-              <app-button (click)="login()" label="Acessar"></app-button>
-            </div>
             <div>
               <button routerLink="/register" mat-button>Cadastre-se</button>
             </div>

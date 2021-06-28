@@ -8,44 +8,33 @@
               <i class="fa fa-user-circle user"></i>
             </div>
 
-            <div>
+            <div *ngFor="let input of registerInputs">
               <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Nome</mat-label>
+                <mat-label>{{ input.label }}</mat-label>
                 <input
-                  formControlName="name"
+                  [formControlName]="input.control"
+                  [type]="input.control"
+                  [required]="input.required"
+                  [placeholder]="input.placeholder"
                   matInput
-                  placeholder="Ex. João da Silva"
                 />
               </mat-form-field>
             </div>
 
             <div>
-              <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Email</mat-label>
-                <input
-                  formControlName="email"
-                  matInput
-                  placeholder="Ex. joao@email.com"
-                />
-              </mat-form-field>
+              <app-button
+                (click)="register()"
+                [disabled]="form.invalid"
+                label="Cadastrar">
+              </app-button>
             </div>
 
             <div>
-              <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Senha</mat-label>
-                <input
-                  formControlName="password"
-                  matInput
-                  placeholder="•••••••"
-                />
-              </mat-form-field>
-            </div>
-
-            <div>
-              <app-button (click)="register()" label="Cadastrar"></app-button>
-            </div>
-            <div>
-              <button routerLink="/login" mat-button>Voltar ao login</button>
+              <app-button
+                routerLink="/login"
+                theme="secondary"
+                label="Voltar ao login">
+              </app-button>
             </div>
           </form>
         </mat-card>

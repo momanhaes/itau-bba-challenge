@@ -158,6 +158,7 @@ export class FormatterLib {
     const formattedValue = value
       .split('')
       .reverse()
+      // TODO: Corrigir tipagem
       .reduce((acc: any, number: any, index: any, list: any) => {
         const isDivisibleBy3 = index > 0 && index % 3 === 0;
         if (isDivisibleBy3 && index < list.length) {

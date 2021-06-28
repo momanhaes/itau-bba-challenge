@@ -97,6 +97,13 @@ a {
   top: 50%;
 }
 
+// Replicate Sweet Alert Focus Color
+.swal2-popup .swal2-styled {
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
 // Replicate Angular Material Input Select Color
 .mat-option.mat-selected:not(.mat-option-disabled) {
   color: $color-primary !important;

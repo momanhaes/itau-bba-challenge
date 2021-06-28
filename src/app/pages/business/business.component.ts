@@ -80,6 +80,7 @@ export class BusinessPageComponent implements OnInit {
     return BUSINESS_INPUTS;
   }
 
+  // TODO: Corrigir tipagem
   public showError(error: any): void {
     Swal.fire({
       title: `Ops!`,
@@ -102,6 +103,7 @@ export class BusinessPageComponent implements OnInit {
     });
   }
 
+  // TODO: Corrigir tipagem
   public showSuccess(business: any): void {
     console.table(business);
 
@@ -162,6 +164,7 @@ export class BusinessPageComponent implements OnInit {
               return err;
             })
           )
+          // TODO: Corrigir tipagem
           .subscribe((business: any) => {
             this.data = business;
 

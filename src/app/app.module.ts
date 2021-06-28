@@ -15,6 +15,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { NgxMaskModule } from 'ngx-mask';
 import {
@@ -37,12 +38,20 @@ import { TableComponent } from './components/table/table.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { InputComponent } from './components/input/input.component';
 import { CepComponent } from './components/cep/cep.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 import { WindowService } from './services/window.service';
 import { BusinessService } from './services/business.service';
 import { SessionStorageService } from './services/session-storage.service';
+import { LocalStorageService } from './services/local-storage.service';
+import { NotificationService } from './services/notification.service';
 import { FormatterLib } from 'src/lib/formatter.lib';
 import { CEPService } from './services/cep.service';
+
+import { PermitionGuard } from './guards/permition.guard';
+import { LoggedInGuard } from './guards/loggedin.guard';
+import { LoginGuard } from './guards/login.guard';
 
 import { ResizeDirective } from './directives/resize.directive';
 import { ROUTES } from './app.routes';
@@ -63,9 +72,14 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 registerLocaleData(localePt, 'pt');
 
 const PROVIDERS = [
-  WindowService,
-  BusinessService,
+  PermitionGuard,
+  LoggedInGuard,
+  LoginGuard,
   SessionStorageService,
+  LocalStorageService,
+  NotificationService,
+  BusinessService,
+  WindowService,
   FormatterLib,
   CEPService,
   { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
@@ -80,13 +94,15 @@ const DECLARATIONS = [
   RegisterPageComponent,
   BusinessPageComponent,
   NotFoundPageComponent,
+  SnackbarComponent,
   HeaderComponent,
   FooterComponent,
   ButtonComponent,
   TableComponent,
   SpinnerComponent,
   InputComponent,
-  CepComponent
+  CepComponent,
+  MenuComponent,
 ];
 
 const EXTERNAL_MODULES = [NgxMaskModule.forRoot(), CurrencyMaskModule];
@@ -110,6 +126,7 @@ const MATERIAL_MODULES = [
   MatPaginatorModule,
   MatSortModule,
   MatInputModule,
+  MatMenuModule,
 ];
 
 @NgModule({

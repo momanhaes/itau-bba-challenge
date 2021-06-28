@@ -1,0 +1,31 @@
+@import "../../scss/includes.scss";
+
+.language {
+  font-family: $font-montserrat;
+  font-size: 18px;
+}
+
+.center {
+  display: center;
+  align-items: center;
+}
+
+.menu-user {
+  display: flex;
+  align-items: center;
+  text-align: left;
+
+  .dot {
+    font-size: 44px;
+    color: #333333;
+    border-left: solid 1px $color-black;
+    padding-left: 40px;
+  }
+
+  .user {
+    font-family: $font-montserrat;
+    font-size: 16px;
+    line-height: 1.3;
+    margin: 0px;
+  }
+}

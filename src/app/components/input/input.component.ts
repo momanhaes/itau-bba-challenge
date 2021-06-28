@@ -32,6 +32,7 @@ export class InputComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {}
 
+  // TODO: Corrigir tipagem
   get mask(): any {
     switch (this.type) {
       case 'cpf':

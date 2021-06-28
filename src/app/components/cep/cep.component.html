@@ -1,5 +1,6 @@
 <app-input
   placeholder="Digite seu CEP"
+  (input)="findAddressByCEP($event, 'template')"
   control="cep"
   [required]="true"
   label="CEP"
@@ -8,4 +9,4 @@
 >
 </app-input>
 
-<p *ngIf="isLoading">Carregando endereço...</p>
+<p class="mt-2" *ngIf="isLoading">Carregando endereço...</p>

@@ -22,17 +22,25 @@ export class CepComponent implements OnInit {
 
   constructor(private cepService: CEPService) {}
 
-  public findAddressByCEP(cep: string) {
+  public findAddressByCEP(cep: any, origin: string) {
     if (!cep) return;
 
-    const cepOnlyNumbers = cep.replace(/\.|\-/g, '');
+    let cepOnlyNumbers;
+
+    if (origin === 'template') {
+      cepOnlyNumbers = cep?.target?.value?.replace(/\.|\-/g, '');
+    }
+
+    if (origin === 'controller') {
+      cepOnlyNumbers = cep?.replace(/\.|\-/g, '');
+    }
 
     if (cepOnlyNumbers?.length !== 8) return;
 
     this.isLoading = true;
 
     this.cepService
-      .getAddress(cep)
+      .getAddress(cepOnlyNumbers)
       .pipe(
         catchError((err) => {
           this.error.isError = true;
@@ -40,6 +48,7 @@ export class CepComponent implements OnInit {
           return (this.error.content = err);
         })
       )
+      // TODO: Corrigir tipagem
       .subscribe((cep: any) => {
         this.addressByCepEvent.emit(cep);
         this.isLoading = false;
@@ -48,6 +57,6 @@ export class CepComponent implements OnInit {
 
   ngOnInit(): void {
     const cep = this.form.value.cep;
-    this.findAddressByCEP(cep);
+    this.findAddressByCEP(cep, 'controller');
   }
 }
