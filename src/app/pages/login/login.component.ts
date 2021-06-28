@@ -10,7 +10,6 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
 import { ALERT_THEME } from 'src/app/utils/theme';
 import { LOGIN_INPUTS } from './login.const';
-import Swal from 'sweetalert2';
 
 export interface ILoginInput {
   label: string;
@@ -52,19 +51,6 @@ export class LoginPageComponent implements OnInit {
     return LOGIN_INPUTS;
   }
 
-  public showError(): void {
-    Swal.fire({
-      title: `Ops!`,
-      text: 'Ocorreu um erro na autenticação.',
-      icon: 'error',
-      background: this.alertTheme.background,
-      iconColor: this.alertTheme.iconColor,
-      showCancelButton: false,
-      confirmButtonColor: this.alertTheme.confirmButtonColor,
-      confirmButtonText: 'Ok',
-    });
-  }
-
   public login() {
     if (this.form.invalid) {
       return;
@@ -88,7 +74,13 @@ export class LoginPageComponent implements OnInit {
       this.notificationService.notify(`Bem-vindo, ${userRegistered.name}!`);
       this.router.navigate(['/home']);
     } else {
-      this.showError();
+      this.notificationService.showModal(
+        'Ops!',
+        'Ocorreu um erro na autenticação.',
+        'error',
+        'Ok',
+        false
+      );
     }
   }
 }

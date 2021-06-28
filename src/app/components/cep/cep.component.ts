@@ -25,7 +25,7 @@ export class CepComponent implements OnInit {
   public findAddressByCEP(cep: any, origin: string) {
     if (!cep) return;
 
-    let cepOnlyNumbers;
+    let cepOnlyNumbers: string = '';
 
     if (origin === 'template') {
       cepOnlyNumbers = cep?.target?.value?.replace(/\.|\-/g, '');
@@ -39,20 +39,22 @@ export class CepComponent implements OnInit {
 
     this.isLoading = true;
 
-    this.cepService
-      .getAddress(cepOnlyNumbers)
-      .pipe(
-        catchError((err) => {
-          this.error.isError = true;
+    setTimeout(() => {
+      this.cepService
+        .getAddress(cepOnlyNumbers)
+        .pipe(
+          catchError((err) => {
+            this.error.isError = true;
+            this.isLoading = false;
+            return (this.error.content = err);
+          })
+        )
+        // TODO: Corrigir tipagem
+        .subscribe((cep: any) => {
+          this.addressByCepEvent.emit(cep);
           this.isLoading = false;
-          return (this.error.content = err);
-        })
-      )
-      // TODO: Corrigir tipagem
-      .subscribe((cep: any) => {
-        this.addressByCepEvent.emit(cep);
-        this.isLoading = false;
-      });
+        });
+    }, 500);
   }
 
   ngOnInit(): void {

@@ -2,15 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { APPEARD } from 'src/app/animations/appeard.animation';
-import {
-  KeyType,
-  LocalStorageService,
-} from 'src/app/services/local-storage.service';
-import { ALERT_THEME } from 'src/app/utils/theme';
 import { ILoginInput } from '../login/login.component';
 import { REGISTER_INPUTS } from './register.const';
-import Swal from 'sweetalert2';
 import { IUser, UserService } from 'src/app/services/user.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -20,14 +15,13 @@ import { IUser, UserService } from 'src/app/services/user.service';
 })
 export class RegisterPageComponent implements OnInit {
   public registerInputs!: ILoginInput[];
-  public alertTheme = ALERT_THEME;
   public form!: FormGroup;
   public state = 'ready';
 
   constructor(
     private router: Router,
     private userSerive: UserService,
-    private localStorageService: LocalStorageService
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -44,20 +38,6 @@ export class RegisterPageComponent implements OnInit {
     return REGISTER_INPUTS;
   }
 
-  // TODO: Corrigir tipagem
-  public showSuccess(user: any): void {
-    Swal.fire({
-      title: `Parabéns, ${user.name}!`,
-      text: `Você efetuou seu cadastro com sucesso.`,
-      icon: 'success',
-      background: this.alertTheme.background,
-      iconColor: this.alertTheme.iconColor,
-      showCancelButton: false,
-      confirmButtonColor: this.alertTheme.confirmButtonColor,
-      confirmButtonText: 'Ok',
-    });
-  }
-
   public register() {
     const user: IUser = {
       name: this.form.get('name')?.value,
@@ -68,7 +48,14 @@ export class RegisterPageComponent implements OnInit {
     this.userSerive.create(user);
 
     // TODO: Aqui deve chamar o serviço de criação de usuário
-    this.showSuccess(user);
+    this.notificationService.showModal(
+      `Parabéns, ${user.name}!`,
+      'Você efetuou seu cadastro com sucesso.',
+      'success',
+      'Ok',
+      false
+    );
+
     this.router.navigate(['/login']);
   }
 }

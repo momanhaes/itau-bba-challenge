@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { KeyType, LocalStorageService } from './local-storage.service';
-import { SessionStorageService } from './session-storage.service';
-
 export interface IUserInfo {
   name: string;
   email: string;
@@ -26,10 +24,7 @@ export enum PositionType {
 export class UserService {
   public user!: IUser;
 
-  constructor(
-    private localStorageService: LocalStorageService,
-    private sessionStorageService: SessionStorageService
-  ) {
+  constructor(private localStorageService: LocalStorageService) {
     this.user = {
       email: '',
       password: '',

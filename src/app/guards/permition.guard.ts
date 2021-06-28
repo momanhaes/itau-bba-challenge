@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { NotificationService } from '../services/notification.service';
 import { UserService } from '../services/user.service';
 
 @Injectable()

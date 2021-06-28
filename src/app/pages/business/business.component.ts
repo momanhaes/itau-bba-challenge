@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 import { APPEARD } from 'src/app/animations/appeard.animation';
 import { ADDRESS_INPUTS, BUSINESS_INPUTS } from './business.const';
 import { ICEP } from 'src/app/services/cep.service';
-import Swal from 'sweetalert2';
+import { NotificationService } from 'src/app/services/notification.service';
 
 export interface IInput {
   label: string;
@@ -45,7 +45,8 @@ export class BusinessPageComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private businessService: BusinessService
+    private businessService: BusinessService,
+    private notificationService: NotificationService
   ) {
     this.isLoading = false;
     this.businessStatus = [
@@ -62,13 +63,31 @@ export class BusinessPageComponent implements OnInit {
 
   private add(business: IBusiness) {
     // TODO: Aqui deve chamar o serviço de criação de polo
-    this.showSuccess(business);
+    this.notificationService.showModal(
+      'Sucesso!',
+      this.isEdit
+        ? `Você editou o polo '${business.businessName}'.`
+        : `Você cadastrou o polo '${business.businessName}'.`,
+      'success',
+      'Ok',
+      false
+    );
+
     this.router.navigate(['/home']);
   }
 
   private update(business: IBusiness) {
     // TODO: Aqui deve chamar o serviço de atualização de polo
-    this.showSuccess(business);
+    this.notificationService.showModal(
+      'Sucesso!',
+      this.isEdit
+        ? `Você editou o polo '${business.businessName}'.`
+        : `Você cadastrou o polo '${business.businessName}'.`,
+      'success',
+      'Ok',
+      false
+    );
+
     this.router.navigate(['/home']);
   }
 
@@ -80,44 +99,12 @@ export class BusinessPageComponent implements OnInit {
     return BUSINESS_INPUTS;
   }
 
-  // TODO: Corrigir tipagem
-  public showError(error: any): void {
-    Swal.fire({
-      title: `Ops!`,
-      text: error ? error : 'Ocorreu um erro ao buscar polo.',
-      icon: 'error',
-      background: this.alertTheme.background,
-      iconColor: this.alertTheme.iconColor,
-      showCancelButton: false,
-      confirmButtonColor: this.alertTheme.confirmButtonColor,
-      confirmButtonText: 'Ok',
-    }).then(() => this.router.navigate(['/home']));
-  }
-
   public getAddress(cep: ICEP) {
     this.form.patchValue({
       addressName: cep.logradouro,
       neighborhood: cep.bairro,
       state: cep.uf,
       city: cep.localidade,
-    });
-  }
-
-  // TODO: Corrigir tipagem
-  public showSuccess(business: any): void {
-    console.table(business);
-
-    Swal.fire({
-      title: 'Sucesso!',
-      text: this.isEdit
-        ? `Você editou o polo '${business.businessName}'.`
-        : `Você cadastrou o polo '${business.businessName}'.`,
-      icon: 'success',
-      background: this.alertTheme.background,
-      iconColor: this.alertTheme.iconColor,
-      showCancelButton: false,
-      confirmButtonColor: this.alertTheme.confirmButtonColor,
-      confirmButtonText: 'Ok',
     });
   }
 
@@ -160,7 +147,15 @@ export class BusinessPageComponent implements OnInit {
           .pipe(
             catchError((err) => {
               this.isLoading = false;
-              this.showError(err.error.error);
+              this.notificationService.showModal(
+                'Ops!',
+                'Ocorreu um erro ao buscar polo.',
+                'error',
+                'Ok',
+                true,
+                '/home'
+              );
+
               return err;
             })
           )
@@ -171,7 +166,7 @@ export class BusinessPageComponent implements OnInit {
             this.form.patchValue({
               cep: this.data.cep,
               businessName: this.data.name,
-              type: this.data.business,
+              type: this.data.businessName,
               valuation: this.data.valuation,
               cnpj: this.data.cnpj,
               active: this.data.active ? 'Sim' : 'Não',

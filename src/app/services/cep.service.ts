@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { VIA_CEP_API } from '../app.api';
 
 export interface ICEP {
   cep: string;
@@ -17,12 +18,9 @@ export interface ICEP {
 
 @Injectable({ providedIn: 'root' })
 export class CEPService {
-  private API = 'https://viacep.com.br/ws/';
-  private endpoint = 'json/';
-
   constructor(private httpClient: HttpClient) {}
 
   public getAddress(cep: string): Observable<ICEP> {
-    return this.httpClient.get<ICEP>(`${this.API}${cep}/${this.endpoint}`);
+    return this.httpClient.get<ICEP>(`${VIA_CEP_API}${cep}/json`);
   }
 }
