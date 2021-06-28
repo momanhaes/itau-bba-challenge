@@ -2,20 +2,31 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IBusiness } from 'src/app/components/table/table.interface';
 import { BusinessService } from 'src/app/services/business.service';
 import { catchError } from 'rxjs/operators';
-import {
-  KeyType,
-  SessionStorageService,
-} from 'src/app/services/session-storage.service';
 import { MatSort } from '@angular/material/sort';
 import { FormControl, FormGroup } from '@angular/forms';
 import { APPEARD } from 'src/app/animations/appeard.animation';
 import { Subscription } from 'rxjs';
 import { WindowService } from 'src/app/services/window.service';
+import { LanguageService, LanguageType } from 'src/app/services/i18n.service';
+import { HOME_CONTENT } from 'src/app/locale/content.const';
 
 export interface IError {
   isError: boolean;
   origin: string;
   content: any; // TODO: Corrigir tipagem
+}
+
+export interface IContent {
+  title: string;
+  subtitle: string;
+  error: string;
+  search: string;
+  button: string;
+}
+
+export interface ICMS {
+  pt: IContent;
+  en: IContent;
 }
 
 @Component({
@@ -25,7 +36,9 @@ export interface IError {
   animations: [APPEARD],
 })
 export class HomePageComponent implements OnInit {
-  public state = 'ready';
+  public state: string = 'ready';
+  public language: string;
+  public CMS!: ICMS;
   public subscribeMobile!: Subscription;
   public isMobile: boolean;
   public searchForm!: FormGroup;
@@ -42,11 +55,12 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private businessService: BusinessService,
-    private windowService: WindowService,
-    private sessionStorageService: SessionStorageService
+    private languageService: LanguageService,
+    private windowService: WindowService
   ) {
     {
       this.isMobile = window.innerWidth <= windowService.widthMobile;
+      this.language = LanguageType.PT;
     }
   }
 
@@ -54,6 +68,12 @@ export class HomePageComponent implements OnInit {
     this.subscribeMobile = this.windowService.hasMobile.subscribe(
       (hasMobile: boolean) => (this.isMobile = hasMobile)
     );
+
+    this.languageService.notifier.subscribe((language) => {
+      this.language = language;
+    });
+
+    this.CMS = HOME_CONTENT;
 
     this.getData();
     this.searchForm = new FormGroup({ searchControl: new FormControl('') });
@@ -86,10 +106,41 @@ export class HomePageComponent implements OnInit {
           })
         )
         .subscribe((business: IBusiness[]) => {
-          this.sessionStorageService.set(KeyType.BUSINESS, business);
           this.data = business;
           this.isLoading = false;
         });
     }, 500);
+  }
+
+  public getContent(origin: string) {
+    switch (origin) {
+      case 'title':
+        return this.language === LanguageType.PT
+          ? this.CMS.pt.title
+          : this.CMS.en.title;
+
+      case 'subtitle':
+        return this.language === LanguageType.PT
+          ? this.CMS.pt.subtitle
+          : this.CMS.en.subtitle;
+
+      case 'error':
+        return this.language === LanguageType.PT
+          ? this.CMS.pt.error
+          : this.CMS.en.error;
+
+      case 'search':
+        return this.language === LanguageType.PT
+          ? this.CMS.pt.search
+          : this.CMS.en.search;
+
+      case 'button':
+        return this.language === LanguageType.PT
+          ? this.CMS.pt.button
+          : this.CMS.en.button;
+
+      default:
+        return '';
+    }
   }
 }

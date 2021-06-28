@@ -45,17 +45,12 @@ import { ItemComponent } from './components/item/item.component';
 
 import { WindowService } from './services/window.service';
 import { BusinessService } from './services/business.service';
-import { SessionStorageService } from './services/session-storage.service';
-import { LocalStorageService } from './services/local-storage.service';
 import { NotificationService } from './services/notification.service';
+import { LanguageService } from './services/i18n.service';
 import { FormatterLib } from 'src/lib/formatter.lib';
 import { CEPService } from './services/cep.service';
 
 import { ApplicationErrorHandler } from './app.error.handler';
-
-import { PermitionGuard } from './guards/permition.guard';
-import { LoggedInGuard } from './guards/loggedin.guard';
-import { LoginGuard } from './guards/login.guard';
 
 import { ResizeDirective } from './directives/resize.directive';
 import { ROUTES } from './app.routes';
@@ -76,13 +71,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 registerLocaleData(localePt, 'pt');
 
 const PROVIDERS = [
-  PermitionGuard,
-  LoggedInGuard,
-  LoginGuard,
-  SessionStorageService,
-  LocalStorageService,
   NotificationService,
   BusinessService,
+  LanguageService,
   WindowService,
   FormatterLib,
   CEPService,
@@ -112,10 +103,7 @@ const DECLARATIONS = [
   ItemComponent,
 ];
 
-const EXTERNAL_MODULES = [
-  NgxMaskModule.forRoot(),
-  CurrencyMaskModule,
-];
+const EXTERNAL_MODULES = [NgxMaskModule.forRoot(), CurrencyMaskModule];
 
 const ANGULAR_MODULES = [
   RouterModule.forRoot(ROUTES),

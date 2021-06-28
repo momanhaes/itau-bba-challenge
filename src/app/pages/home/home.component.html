@@ -3,10 +3,8 @@
   <div class="container-fluid">
     <div class="header" *ngIf="!isLoading" [@appeard]="state">
       <div class="header-content">
-        <p class="title">Polos Itaú</p>
-        <p class="subtitle">
-          Confira abaixo alguns dos principais polos do Itaú
-        </p>
+        <p class="title">{{ getContent("title") }}</p>
+        <p class="subtitle">{{ getContent("subtitle") }}</p>
       </div>
 
       <div class="search">
@@ -15,7 +13,7 @@
             type="text"
             formControlName="searchControl"
             class="form-control"
-            placeholder="Pesquisar..."
+            [placeholder]="getContent('search')"
           />
         </form>
       </div>
@@ -36,7 +34,8 @@
       </div>
 
       <p *ngIf="!isLoading && !data.length" class="mt-5" [@appeard]="state">
-        Não foram encontrados polos cadastrados <i class="fa fa-frown-o"></i>
+        {{ getContent("error") }}
+        <i class="fa fa-frown-o"></i>
       </p>
     </div>
 
@@ -47,7 +46,7 @@
         [@appeard]="state"
         routerLink="/business-register"
         theme="primary"
-        label="Adicionar"
+        [label]="getContent('button')"
       >
       </app-button>
     </div>

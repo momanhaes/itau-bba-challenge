@@ -7,7 +7,7 @@ import { RegisterPageComponent } from './pages/register/register.component';
 
 // TODO: Implementar os guards loggedin, login e permition
 export const ROUTES: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'home', component: HomePageComponent },

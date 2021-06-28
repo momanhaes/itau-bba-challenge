@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="pt-BR">
+    <file original="ng.template" id="ngi18n">
+        <unit id="geral.inicio">
+            <segment>
+                <target>Check below some of the main centers of Itaú</target>
+            </segment>
+        </unit>
+    </file>
+</xliff>

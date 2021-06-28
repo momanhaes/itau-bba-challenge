@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { APPEARD } from 'src/app/animations/appeard.animation';
-import {
-  KeyType,
-  LocalStorageService,
-} from 'src/app/services/local-storage.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
 import { ALERT_THEME } from 'src/app/utils/theme';
@@ -34,8 +30,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private notificationService: NotificationService,
-    private localStorageService: LocalStorageService
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -60,27 +55,7 @@ export class LoginPageComponent implements OnInit {
 
     // TODO: Implementar observable com chamada real
     this.userService.login(user.email, user.password);
-
-    // TODO: Remover essa lógica do front e implementar no back.
-    // O serivço de login deve chamar o back e retornar pra esse componente o resultado da autorização
-    const userRegistered = this.localStorageService.get(KeyType.USER);
-    const isAuth =
-      userRegistered.email === user.email &&
-      userRegistered.password === user.password
-        ? true
-        : false;
-
-    if (userRegistered?.name && isAuth) {
-      this.notificationService.notify(`Bem-vindo, ${userRegistered.name}!`);
-      this.router.navigate(['/home']);
-    } else {
-      this.notificationService.showModal(
-        'Ops!',
-        'Ocorreu um erro na autenticação.',
-        'error',
-        'Ok',
-        false
-      );
-    }
+    this.notificationService.notify(`Bem-vindo, ${user.name}!`);
+    this.router.navigate(['/home']);
   }
 }

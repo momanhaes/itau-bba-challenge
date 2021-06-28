@@ -2,13 +2,12 @@
   <div class="container">
     <div class="row center">
       <div class="col-2">
-        <!-- TODO: Implementar i18n -->
         <button class="language" mat-button [matMenuTriggerFor]="language">
-          PT
+          {{ lang }}
         </button>
         <mat-menu #language="matMenu">
-          <button mat-menu-item>PT</button>
-          <button mat-menu-item>EN</button>
+          <button mat-menu-item (click)="changeLanguage('PT')">PT</button>
+          <button mat-menu-item (click)="changeLanguage('EN')">EN</button>
         </mat-menu>
       </div>
 

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { KeyType, LocalStorageService } from './local-storage.service';
 export interface IUserInfo {
   name: string;
   email: string;
@@ -10,9 +9,9 @@ export interface IUserInfo {
 export interface IUser {
   name: string;
   email: string;
-  token?: string;
-  cargo?: string;
   password: string;
+  cargo?: string;
+  token?: string;
 }
 
 export enum PositionType {
@@ -24,7 +23,7 @@ export enum PositionType {
 export class UserService {
   public user!: IUser;
 
-  constructor(private localStorageService: LocalStorageService) {
+  constructor() {
     this.user = {
       email: '',
       password: '',
@@ -48,25 +47,18 @@ export class UserService {
       token: this.aleatoryToken(),
     };
 
-    this.localStorageService.set(KeyType.USER, newUser);
     return newUser;
   }
 
-  // TODO: Corrigir tipagem
-  public login(email: string, password: string): any {
+  public login(email: string, password: string): void {
     // TODO: Deve chamar endpoint de login
-    const user: IUser = this.localStorageService.get(KeyType.USER);
-
-    if (user?.email === email && user?.password === password) {
-      return this.localStorageService.set(KeyType.LOGGEDIN, true);
-    }
   }
 
-  public isLoggedIn(): boolean {
-    return this.localStorageService.get(KeyType.LOGGEDIN);
+  public isLoggedIn(): void {
+    // TODO: Deve verificar se o usuário está salvo na sessão
   }
 
   public logout(): void {
-    this.localStorageService.remove(KeyType.LOGGEDIN);
+    // TODO: Deve deslogar o usuário
   }
 }

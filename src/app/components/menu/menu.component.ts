@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  KeyType,
-  LocalStorageService,
-} from 'src/app/services/local-storage.service';
+import { LanguageService, LanguageType } from 'src/app/services/i18n.service';
 import { IUser, UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,15 +10,29 @@ import { IUser, UserService } from 'src/app/services/user.service';
 })
 export class MenuComponent implements OnInit {
   public user: IUser;
+  public lang: string;
+
   constructor(
-    private userService: UserService,
     private router: Router,
-    private localStorageService: LocalStorageService
+    private userService: UserService,
+    private languageService: LanguageService
   ) {
-    this.user = this.localStorageService.get(KeyType.USER);
+    this.user = {
+      name: 'Matheus',
+      cargo: 'Cliente',
+      email: 'momanhaes@gmail.com',
+      password: '123456',
+    };
+
+    this.lang = LanguageType.PT;
   }
 
   ngOnInit(): void {}
+
+  public changeLanguage(lang: string) {
+    this.lang = lang;
+    this.languageService.updateLanguage(lang);
+  }
 
   public logout() {
     this.userService.logout();
