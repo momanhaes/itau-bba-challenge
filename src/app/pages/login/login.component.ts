@@ -55,7 +55,7 @@ export class LoginPageComponent implements OnInit {
 
     // TODO: Implementar observable com chamada real
     this.userService.login(user.email, user.password);
-    this.notificationService.notify(`Bem-vindo, ${user.name}!`);
+    this.notificationService.notify('Bem-vindo, Matheus!');
     this.router.navigate(['/home']);
   }
 }
