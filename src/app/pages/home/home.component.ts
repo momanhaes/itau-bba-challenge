@@ -58,10 +58,16 @@ export class HomePageComponent implements OnInit {
     this.getData();
     this.searchForm = new FormGroup({ searchControl: new FormControl('') });
     this.searchForm.valueChanges.subscribe((searchTerm) => {
-      // TODO: Deve chamar o endpoint de busca
-      console.log(
-        `Deve chamar o endpoint de busca passando o termo '${searchTerm.searchControl}'`
+      this.searchTerm = searchTerm.searchControl;
+
+      const result: IBusiness[] = this.data.filter(
+        (item) =>
+          item.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          item.business.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          item.valuation.toString().includes(this.searchTerm)
       );
+
+      this.businessService.updateBusiness(result);
     });
   }
 

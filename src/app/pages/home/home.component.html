@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="root">
   <div class="container-fluid">
-    <div class="header" *ngIf="!isLoading && data.length" [@appeard]="state">
+    <div class="header" *ngIf="!isLoading" [@appeard]="state">
       <div class="header-content">
         <p class="title">Polos Itaú</p>
         <p class="subtitle">
@@ -35,7 +35,7 @@
         <app-list [data]="data" *ngIf="isMobile"></app-list>
       </div>
 
-      <p *ngIf="!isLoading && !data.length" [@appeard]="state">
+      <p *ngIf="!isLoading && !data.length" class="mt-5" [@appeard]="state">
         Não foram encontrados polos cadastrados <i class="fa fa-frown-o"></i>
       </p>
     </div>

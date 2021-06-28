@@ -5,11 +5,12 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { TableDataSource } from './table-datasource';
+import { BusinessService } from 'src/app/services/business.service';
 import { IBusiness } from './table.interface';
 
 @Component({
@@ -21,10 +22,11 @@ export class TableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) public paginator!: MatPaginator;
   @ViewChild(MatTable) public table!: MatTable<IBusiness>;
   @ViewChild(MatSort) public sort!: MatSort;
+
   @Input() public data!: IBusiness[];
 
-  public dataSource!: TableDataSource;
-  public displayedColumns = [
+  public dataSource!: MatTableDataSource<IBusiness>;
+  public displayedColumns: string[] = [
     'name',
     'business',
     'valuation',
@@ -32,7 +34,10 @@ export class TableComponent implements AfterViewInit, OnInit {
     'action',
   ];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private businessService: BusinessService
+  ) {}
 
   public getDotSituation(active: boolean): string {
     return active ? 'fa fa-circle color-green' : 'fa fa-circle color-red';
@@ -43,7 +48,11 @@ export class TableComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.dataSource = new TableDataSource(this.data);
+    this.dataSource = new MatTableDataSource(this.data);
+
+    this.businessService.notifier.subscribe((business) => {
+      this.dataSource = new MatTableDataSource(business);
+    });
   }
 
   ngAfterViewInit(): void {

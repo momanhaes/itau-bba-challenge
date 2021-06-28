@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BUSINESS_API } from '../app.api';
 import { IBusiness } from '../components/table/table.interface';
@@ -7,6 +7,7 @@ import { IBusiness } from '../components/table/table.interface';
 @Injectable({ providedIn: 'root' })
 export class BusinessService {
   private itauEndpoint = '/itau_teste';
+  public notifier = new EventEmitter<any>();
 
   constructor(private httpClient: HttpClient) {}
 
@@ -20,5 +21,9 @@ export class BusinessService {
     return this.httpClient.get<IBusiness>(
       `${BUSINESS_API}${this.itauEndpoint}/${id}`
     );
+  }
+
+  public updateBusiness(business: IBusiness[]): void {
+    this.notifier.emit(business);
   }
 }

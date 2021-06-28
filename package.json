@@ -23,7 +23,6 @@
     "@fortawesome/fontawesome-free": "^5.15.1",
     "angular-particle": "^1.0.4",
     "bootstrap": "^4.6.0",
-    "cep-promise": "^4.1.1",
     "dayjs": "^1.10.4",
     "font-awesome": "^4.7.0",
     "ng2-currency-mask": "^9.0.2",

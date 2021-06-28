@@ -112,7 +112,10 @@ const DECLARATIONS = [
   ItemComponent,
 ];
 
-const EXTERNAL_MODULES = [NgxMaskModule.forRoot(), CurrencyMaskModule];
+const EXTERNAL_MODULES = [
+  NgxMaskModule.forRoot(),
+  CurrencyMaskModule,
+];
 
 const ANGULAR_MODULES = [
   RouterModule.forRoot(ROUTES),
