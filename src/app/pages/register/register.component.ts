@@ -39,6 +39,10 @@ export class RegisterPageComponent implements OnInit {
   }
 
   public register() {
+    if (this.form.invalid) {
+      return;
+    }
+
     const user: IUser = {
       name: this.form.get('name')?.value,
       email: this.form.get('email')?.value,
