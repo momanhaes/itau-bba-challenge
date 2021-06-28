@@ -1,0 +1,40 @@
+@import "../../scss/includes.scss";
+
+.row {
+  @include grid(32);
+  border-bottom: 1px solid $color-primary;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+
+  .name {
+    @include grid-column-span(32);
+
+    @media (min-width: 500px) {
+      @include grid-column-span(32);
+    }
+  }
+
+  .business {
+    @include grid-column-span(16);
+  }
+
+  .valuation {
+    @include grid-column-span(16);
+  }
+
+  .situation {
+    @include grid-column-span(16);
+
+    .color-red {
+      color: $color-light-red;
+    }
+
+    .color-green {
+      color: $color-green;
+    }
+  }
+
+  .action {
+    @include grid-column-span(16);
+  }
+}

@@ -9,6 +9,8 @@ import {
 import { MatSort } from '@angular/material/sort';
 import { FormControl, FormGroup } from '@angular/forms';
 import { APPEARD } from 'src/app/animations/appeard.animation';
+import { Subscription } from 'rxjs';
+import { WindowService } from 'src/app/services/window.service';
 
 export interface IError {
   isError: boolean;
@@ -24,6 +26,8 @@ export interface IError {
 })
 export class HomePageComponent implements OnInit {
   public state = 'ready';
+  public subscribeMobile!: Subscription;
+  public isMobile: boolean;
   public searchForm!: FormGroup;
   public searchTerm!: string;
   public data!: IBusiness[];
@@ -38,10 +42,19 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private businessService: BusinessService,
+    private windowService: WindowService,
     private sessionStorageService: SessionStorageService
-  ) {}
+  ) {
+    {
+      this.isMobile = window.innerWidth <= windowService.widthMobile;
+    }
+  }
 
   ngOnInit(): void {
+    this.subscribeMobile = this.windowService.hasMobile.subscribe(
+      (hasMobile: boolean) => (this.isMobile = hasMobile)
+    );
+
     this.getData();
     this.searchForm = new FormGroup({ searchControl: new FormControl('') });
     this.searchForm.valueChanges.subscribe((searchTerm) => {

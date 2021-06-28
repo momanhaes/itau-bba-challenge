@@ -7,12 +7,12 @@
     @include grid-column-span(32);
     padding: 0 144px;
 
-    @include large-and-down() {
-      padding: 0 48px;
-    }
-
     @include small-and-down() {
       padding: 0 24px;
+    }
+
+    @media (max-width: $breakpoint-wide) {
+      padding: 0 48px;
     }
 
     .header {
@@ -51,12 +51,22 @@
     }
 
     .buttons {
-      @include start();
+      @include center();
+      margin-top: 0px;
       flex-wrap: wrap;
-      margin-top: 24px;
+
+      @media (min-width: $breakpoint-large) {
+        @include start();
+        margin-top: 24px;
+      }
 
       app-button {
         margin-right: 16px;
+        margin-top: 12px;
+
+        @media (min-width: $breakpoint-large) {
+          margin-top: 0px;
+        }
       }
     }
   }

@@ -13,17 +13,25 @@
       @include grid-column-span(32);
       padding: 0 128px;
 
-      @include large-and-down() {
-        padding: 0px 32px;
-      }
-
       @include small-and-down() {
         padding: 0 8px;
       }
 
+      @media (max-width: $breakpoint-wide) {
+        padding: 0px 32px;
+      }
+
       .content {
-        @include between();
+        @include end();
         flex-wrap: wrap;
+
+        @media (max-width: 500px) {
+          @include center();
+        }
+
+        @media (min-width: 1026px) {
+          @include between();
+        }
 
         img {
           width: 100px;

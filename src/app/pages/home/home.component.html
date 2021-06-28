@@ -31,7 +31,8 @@
         *ngIf="!isLoading && data.length"
         [@appeard]="state"
       >
-        <app-table [data]="data"></app-table>
+        <app-table [data]="data" *ngIf="!isMobile"></app-table>
+        <app-list [data]="data" *ngIf="isMobile"></app-list>
       </div>
 
       <p *ngIf="!isLoading && !data.length" [@appeard]="state">

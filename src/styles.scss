@@ -97,14 +97,14 @@ a {
   top: 50%;
 }
 
-// Replicate Sweet Alert Focus Color
+// Remoção da cor de focus dos botões do Sweet Alert
 .swal2-popup .swal2-styled {
   &:focus {
     box-shadow: none !important;
   }
 }
 
-// Replicate Angular Material Input Select Color
+// Alteração das cores dos selects do Angular Material
 .mat-option.mat-selected:not(.mat-option-disabled) {
   color: $color-primary !important;
 }

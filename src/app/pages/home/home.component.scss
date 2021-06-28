@@ -7,20 +7,28 @@
     @include grid-column-span(32);
     padding: 0 144px;
 
-    @include large-and-down() {
-      padding: 0 48px;
-    }
-
     @include small-and-down() {
       padding: 0 24px;
     }
 
+    @media (max-width: $breakpoint-wide) {
+      padding: 0 48px;
+    }
+
     .header {
-      @include between();
+      display: block;
       margin: 50px 0 24px 0;
 
+      @media (min-width: $breakpoint-wide) {
+        @include between();
+      }
+
       .header-content {
-        width: 70%;
+        width: 100%;
+
+        @media (min-width: $breakpoint-wide) {
+          width: 70%;
+        }
 
         .title {
           font-weight: bold;
@@ -33,7 +41,11 @@
       }
 
       .search {
-        width: 30%;
+        width: 100%;
+
+        @media (min-width: $breakpoint-wide) {
+          width: 30%;
+        }
       }
     }
 
@@ -46,12 +58,16 @@
     }
 
     .button {
-      @include end();
+      @include center();
+
+      @media (min-width: $breakpoint-wide) {
+        @include end();
+      }
     }
   }
 }
 
-// Replicate Angular Material Input Color
+// Alteração das cores da tabela do Angular Material
 ::ng-deep .mat-focused .mat-form-field-label {
   color: $color-primary !important;
 }

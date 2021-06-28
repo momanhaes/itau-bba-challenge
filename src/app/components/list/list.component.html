@@ -1,0 +1,35 @@
+<div class="container-fluid mt-4" [@appeard]="state">
+  <div *ngFor="let business of data" [@appeard]="state">
+    <div class="row">
+      <div class="name">
+        <app-item
+          label="Nome"
+          [value]="business.name"
+          type="standart"
+        ></app-item>
+      </div>
+      <div class="business">
+        <app-item
+          label="Business"
+          [value]="business.business"
+          type="standart"
+        ></app-item>
+      </div>
+      <div class="valuation">
+        <app-item
+          label="Valuation"
+          [value]="business.valuation"
+          type="currency"
+        ></app-item>
+      </div>
+      <div class="situation">
+        <app-item label="Situação" type="standart"></app-item>
+        <i [class]="getDotSituation(business.active)"></i>
+      </div>
+      <div class="action">
+        <app-item label="Ação" type="standart"></app-item>
+        <i class="fa fa-eye" (click)="edit(business)"></i>
+      </div>
+    </div>
+  </div>
+</div>

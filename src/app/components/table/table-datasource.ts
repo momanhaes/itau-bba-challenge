@@ -62,7 +62,7 @@ export class TableDataSource extends DataSource<IBusiness> {
         case 'name':
           return this.compare(a.name, b.name, isAsc);
         case 'business':
-          return this.compare(a.businessName, b.businessName, isAsc);
+          return this.compare(a.business, b.business, isAsc);
         case 'valuation':
           return this.compare(+a.valuation, +b.valuation, isAsc);
         case 'active':

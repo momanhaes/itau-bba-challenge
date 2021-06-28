@@ -66,8 +66,8 @@ export class BusinessPageComponent implements OnInit {
     this.notificationService.showModal(
       'Sucesso!',
       this.isEdit
-        ? `Você editou o polo '${business.businessName}'.`
-        : `Você cadastrou o polo '${business.businessName}'.`,
+        ? `Você editou o polo '${business.business}'.`
+        : `Você cadastrou o polo '${business.business}'.`,
       'success',
       'Ok',
       false
@@ -81,8 +81,8 @@ export class BusinessPageComponent implements OnInit {
     this.notificationService.showModal(
       'Sucesso!',
       this.isEdit
-        ? `Você editou o polo '${business.businessName}'.`
-        : `Você cadastrou o polo '${business.businessName}'.`,
+        ? `Você editou o polo '${business.business}'.`
+        : `Você cadastrou o polo '${business.business}'.`,
       'success',
       'Ok',
       false
@@ -122,12 +122,12 @@ export class BusinessPageComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       cep: new FormControl(''),
-      businessName: new FormControl(''),
+      name: new FormControl(''),
       neighborhood: new FormControl(''),
       state: new FormControl(''),
       city: new FormControl(''),
       addressName: new FormControl(''),
-      type: new FormControl(''),
+      business: new FormControl(''),
       valuation: new FormControl(''),
       cnpj: new FormControl(''),
       active: new FormControl(''),
@@ -165,8 +165,8 @@ export class BusinessPageComponent implements OnInit {
 
             this.form.patchValue({
               cep: this.data.cep,
-              businessName: this.data.name,
-              type: this.data.name,
+              name: this.data.name,
+              business: this.data.business,
               valuation: this.data.valuation,
               cnpj: this.data.cnpj,
               active: this.data.active ? 'Sim' : 'Não',

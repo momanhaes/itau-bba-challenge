@@ -40,6 +40,8 @@ import { InputComponent } from './components/input/input.component';
 import { CepComponent } from './components/cep/cep.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { ListComponent } from './components/list/list.component';
+import { ItemComponent } from './components/item/item.component';
 
 import { WindowService } from './services/window.service';
 import { BusinessService } from './services/business.service';
@@ -106,6 +108,8 @@ const DECLARATIONS = [
   InputComponent,
   CepComponent,
   MenuComponent,
+  ListComponent,
+  ItemComponent,
 ];
 
 const EXTERNAL_MODULES = [NgxMaskModule.forRoot(), CurrencyMaskModule];
