@@ -19,7 +19,8 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const userService = this.injector.get(UserService);
 
-    if (userService.isLoggedIn()) {
+    // TODO: Verificar se o usuário está logado
+    if (true) {
       const authRequest = request.clone({
         setHeaders: {
           Authorization: `Bearer ${userService.user.token}`,
