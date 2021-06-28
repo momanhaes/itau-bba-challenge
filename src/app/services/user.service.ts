@@ -24,13 +24,23 @@ export enum PositionType {
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+  public user!: IUser;
+
   constructor(
     private localStorageService: LocalStorageService,
     private sessionStorageService: SessionStorageService
-  ) {}
+  ) {
+    this.user = {
+      email: '',
+      password: '',
+      name: '',
+      token: this.aleatoryToken(),
+    };
+  }
 
+  // TODO: Desmockar token e receber pelo JWT
   public aleatoryToken() {
-    return new Date().getTime();
+    return new Date().getTime().toString();
   }
 
   public create(user: IUser): IUser {
@@ -40,7 +50,7 @@ export class UserService {
       email: user.email,
       password: user.password,
       cargo: PositionType.CLIENTE,
-      token: this.aleatoryToken().toString(),
+      token: this.aleatoryToken(),
     };
 
     this.localStorageService.set(KeyType.USER, newUser);

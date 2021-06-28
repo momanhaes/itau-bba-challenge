@@ -5,6 +5,7 @@ import { LoginPageComponent } from './pages/login/login.component';
 import { NotFoundPageComponent } from './pages/not-found/not-found.component';
 import { RegisterPageComponent } from './pages/register/register.component';
 
+// TODO: Implementar os guards loggedin, login e permition
 export const ROUTES: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
