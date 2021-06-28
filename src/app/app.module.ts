@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { ErrorHandler, LOCALE_ID, NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -49,6 +49,8 @@ import { NotificationService } from './services/notification.service';
 import { FormatterLib } from 'src/lib/formatter.lib';
 import { CEPService } from './services/cep.service';
 
+import { ApplicationErrorHandler } from './app.error.handler';
+
 import { PermitionGuard } from './guards/permition.guard';
 import { LoggedInGuard } from './guards/loggedin.guard';
 import { LoginGuard } from './guards/login.guard';
@@ -84,6 +86,7 @@ const PROVIDERS = [
   CEPService,
   { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
   { provide: LOCALE_ID, useValue: 'pt' },
+  { provide: ErrorHandler, useClass: ApplicationErrorHandler },
 ];
 
 const DECLARATIONS = [
