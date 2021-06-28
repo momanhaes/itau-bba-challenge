@@ -8,6 +8,8 @@ git clone https://github.com/momanhaes/itau-bba-challenge
 
 O projeto foi desenvolvido com o framework Angular.
 
+Caso queira acessar o projeto por um URL pública, abra [https://itau-bba-challenge.netlify.app/](https://itau-bba-challenge.netlify.app/) em seu navegador.
+
 Para rodar o projeto localmente na sua máquina, siga os procedimentos abaixo.
 
 ## Inicialização da SPA
