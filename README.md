@@ -1,27 +1,65 @@
-# ItauBba
+# Desafio Itaú BBA - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
+Clone o repositório usando o comando abaixo:
 
-## Development server
+```sh
+git clone https://github.com/momanhaes/itau-bba-challenge
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+O projeto foi desenvolvido com o framework Angular.
 
-## Code scaffolding
+Para rodar o poejto localmente na sua máquina, siga os procedimentos abaixo.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Inicialização da SPA
 
-## Build
+Instale as dependências do projeto rodando o comando abaixo:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```sh
+npm install
+```
 
-## Running unit tests
+Suba o projeto rodando o comando abaixo:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```sh
+npm start
+```
 
-## Running end-to-end tests
+Abra [http://localhost:4200](http://localhost:4200) em seu navegador.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Documentação das Features
 
-## Further help
+### Cadastro
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+`/register`
+
+* Página de formulário de cadastro de usuários com validação mockada de email e senhas.
+
+`/login`
+
+* Página de formulário de login com autorização mockada.
+
+### Início
+
+`/home`
+
+* Página de exibição dos polos. 
+* Nessa página você pode ver os polos cadastrados disponíveis para edição.
+* É possível, na parte superior da página, fazer uma busca de polos por nome, business e valutaion.
+
+### Cadastro de Polos
+
+`/business-register`
+
+* Página do formulário de cadastro de veículos.
+* Nessa página você pode cadastrar um polo, porém, como o endpoint de CRUD está mockado, o resultado do cadastro não refletirá na listagem de polos.
+  
+`/business-register/:id`
+
+* Página do formulário de edição de veículos.
+* Nessa página você pode editar um polo, porém, como o endpoint de CRUD está mockado, o resultado da edição não refletirá na listagem de polos.
+
+### Informações gerais
+
+* Foi implementada uma página default para erros 404 (not found) a fim lidar com rotas não programadas do sistema.
+* Todas as páginas foram desenvolvidas visando responsividade e usabilidade.
+* Todas as páginas possuem tratamento de erro, loading e animações feitas a partir do módulo nativo do Angular para tornar a navegação do usuário mais fluida.
