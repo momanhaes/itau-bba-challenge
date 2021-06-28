@@ -9,4 +9,6 @@
 >
 </app-input>
 
-<p class="mt-2" *ngIf="isLoading">Carregando endereço...</p>
+<p *ngIf="isLoading">
+  <app-spinner label="Carregando endereço..." [size]="2"> </app-spinner>
+</p>

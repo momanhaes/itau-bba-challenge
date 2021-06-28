@@ -166,7 +166,7 @@ export class BusinessPageComponent implements OnInit {
             this.form.patchValue({
               cep: this.data.cep,
               businessName: this.data.name,
-              type: this.data.businessName,
+              type: this.data.name,
               valuation: this.data.valuation,
               cnpj: this.data.cnpj,
               active: this.data.active ? 'Sim' : 'Não',
