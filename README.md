@@ -8,7 +8,7 @@ git clone https://github.com/momanhaes/itau-bba-challenge
 
 O projeto foi desenvolvido com o framework Angular.
 
-Para rodar o poejto localmente na sua máquina, siga os procedimentos abaixo.
+Para rodar o projeto localmente na sua máquina, siga os procedimentos abaixo.
 
 ## Inicialização da SPA
 
