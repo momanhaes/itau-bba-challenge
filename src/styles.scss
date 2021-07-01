@@ -97,22 +97,9 @@ a {
   top: 50%;
 }
 
-// Remoção da cor de focus dos botões do Sweet Alert
+// Remoção da cor de foco dos botões do Sweet Alert
 .swal2-popup .swal2-styled {
   &:focus {
     box-shadow: none !important;
   }
-}
-
-// Alteração das cores dos selects do Angular Material
-.mat-option.mat-selected:not(.mat-option-disabled) {
-  color: $color-primary !important;
-}
-
-.mat-select-arrow {
-  color: $color-primary !important;
-}
-
-.mat-paginator-icon {
-  color: $color-primary !important;
 }

@@ -16,6 +16,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 import { NgxMaskModule } from 'ngx-mask';
 import {
@@ -125,6 +126,7 @@ const MATERIAL_MODULES = [
   MatSortModule,
   MatInputModule,
   MatMenuModule,
+  MatSelectModule
 ];
 
 @NgModule({

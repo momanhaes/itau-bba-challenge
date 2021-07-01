@@ -1,11 +1,11 @@
 <app-input
-  placeholder="Digite seu CEP"
-  (input)="findAddressByCEP($event, 'template')"
-  control="cep"
-  [required]="true"
-  label="CEP"
   [form]="form"
+  label="CEP"
+  placeholder="Digite seu CEP"
+  control="cep"
   type="cep"
+  [required]="true"
+  (input)="findAddressByCEP($event, 'template')"
 >
 </app-input>
 

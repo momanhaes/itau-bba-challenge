@@ -1,33 +1,35 @@
-<label class="font-weight-bold">
-  {{ label }}
-  <span class="text-danger" *ngIf="required">*</span>
-</label>
-
- <!-- TODO: Mudar estilo do input para o do componente do Angular Material -->
 <form [formGroup]="form">
-  <input
-    *ngIf="type !== 'currency'"
-    [formControlName]="control"
-    type="text"
-    [mask]="mask"
-    [required]="required"
-    [placeholder]="placeholder"
-    class="form-control"
-  />
+  <p *ngIf="type !== 'currency'">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ label }}</mat-label>
+      <input
+        [formControlName]="control"
+        type="text"
+        [mask]="mask"
+        [required]="required"
+        [placeholder]="placeholder"
+        matInput
+      />
+    </mat-form-field>
+  </p>
 
-  <input
-    *ngIf="type === 'currency'"
-    currencyMask
-    [formControlName]="control"
-    type="text"
-    [required]="required"
-    [placeholder]="placeholder"
-    class="form-control"
-  />
+  <p *ngIf="type === 'currency'">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ label }}</mat-label>
+      <input
+        currencyMask
+        [formControlName]="control"
+        type="text"
+        [required]="required"
+        [placeholder]="placeholder"
+        matInput
+      />
+    </mat-form-field>
+  </p>
 </form>
 
-<div *ngIf="hasError" class="text-danger mt-2">
-  <div *ngIf="isRequiredError" class="text text-danger">
+<p *ngIf="hasError" class="error mt-2">
+  <span *ngIf="isRequiredError" class="error">
     {{ label }} é obrigatório.
-  </div>
-</div>
+  </span>
+</p>

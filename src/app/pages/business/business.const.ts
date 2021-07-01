@@ -1,6 +1,6 @@
 export const ADDRESS_INPUTS = [
   {
-    class: 'form-group col-12 col-lg-4',
+    class: 'col-12 col-lg-4',
     label: 'Nome da Rua',
     placeholder: 'Digite o nome da rua',
     control: 'addressName',
@@ -8,7 +8,7 @@ export const ADDRESS_INPUTS = [
     required: true,
   },
   {
-    class: 'form-group col-12 col-lg-2',
+    class: 'col-12 col-lg-2',
     label: 'Bairro',
     placeholder: 'Digite o nome do bairro',
     control: 'neighborhood',
@@ -16,7 +16,7 @@ export const ADDRESS_INPUTS = [
     required: true,
   },
   {
-    class: 'form-group col-12 col-lg-2',
+    class: 'col-12 col-lg-2',
     label: 'Estado',
     placeholder: 'Digite o nome do estado',
     control: 'state',
@@ -24,7 +24,7 @@ export const ADDRESS_INPUTS = [
     required: true,
   },
   {
-    class: 'form-group col-12 col-lg-2',
+    class: 'col-12 col-lg-2',
     label: 'Cidade',
     placeholder: 'Digite o nome da cidade',
     control: 'city',
@@ -35,7 +35,7 @@ export const ADDRESS_INPUTS = [
 
 export const BUSINESS_INPUTS = [
   {
-    class: 'form-group col-12 col-lg-4',
+    class: 'col-12 col-lg-2',
     label: 'Nome',
     placeholder: 'Digite o nome do polo',
     control: 'name',
@@ -43,7 +43,7 @@ export const BUSINESS_INPUTS = [
     required: true,
   },
   {
-    class: 'form-group col-12 col-lg-2',
+    class: 'col-12 col-lg-2',
     label: 'Business',
     placeholder: 'Digite o tipo do polo',
     control: 'business',
@@ -51,7 +51,7 @@ export const BUSINESS_INPUTS = [
     required: true,
   },
   {
-    class: 'form-group col-12 col-lg-2',
+    class: 'col-12 col-lg-2',
     label: 'Valuation (R$)',
     placeholder: 'Digite o valor do polo',
     control: 'valuation',
@@ -59,7 +59,7 @@ export const BUSINESS_INPUTS = [
     required: true,
   },
   {
-    class: 'form-group col-12 col-lg-2',
+    class: 'col-12 col-lg-2',
     label: 'CNPJ',
     placeholder: 'Digite o CNPJ do polo',
     control: 'cnpj',

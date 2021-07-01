@@ -31,23 +31,3 @@
     }
   }
 }
-
-// Alteração das cores dos inputs do Angular Material
-::ng-deep .mat-focused .mat-form-field-label {
-  color: $color-primary !important;
-}
-
-::ng-deep.mat-form-field-underline {
-  background-color: $color-primary !important;
-}
-
-::ng-deep.mat-form-field-ripple {
-  background-color: $color-primary !important;
-}
-
-.mat-button,
-.mat-icon-button,
-.mat-stroked-button {
-  font-size: 16px;
-  color: $color-primary !important;
-}

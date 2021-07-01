@@ -66,16 +66,3 @@
     }
   }
 }
-
-// Alteração das cores da tabela do Angular Material
-::ng-deep .mat-focused .mat-form-field-label {
-  color: $color-primary !important;
-}
-
-::ng-deep.mat-form-field-underline {
-  background-color: $color-primary !important;
-}
-
-::ng-deep.mat-form-field-ripple {
-  background-color: $color-primary !important;
-}

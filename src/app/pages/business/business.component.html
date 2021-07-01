@@ -24,7 +24,7 @@
         <div class="form-row">
           <app-cep
             (addressByCepEvent)="getAddress($event)"
-            class="form-group col-12 col-lg-2"
+            class="col-12 col-lg-2"
             [form]="form"
           ></app-cep>
 
@@ -42,7 +42,7 @@
           </ng-container>
         </div>
 
-        <legend class="mt-4">Detalhes da empresa</legend>
+        <legend class="mt-5">Detalhes da empresa</legend>
         <div class="form-row">
           <ng-container *ngFor="let input of businessInputs">
             <div [class]="input.class">
@@ -57,20 +57,17 @@
             </div>
           </ng-container>
 
-          <div class="form-group col-12 col-lg-2">
-            <label class="font-weight-bold">
-              Ativo?
-              <span class="text-danger">*</span>
-            </label>
-            <select class="custom-select" required formControlName="active">
-              <option disabled selected value="">Escolha uma opção</option>
-              <option
-                *ngFor="let status of businessStatus"
-                [value]="status.value"
-              >
-                {{ status.name }}
-              </option>
-            </select>
+          <div class="col-12 col-lg-2">
+            <p>
+              <mat-form-field appearance="outline" class="full">
+                <mat-label>Ativo?</mat-label>
+                <mat-select required formControlName="active">
+                  <mat-option *ngFor="let status of businessStatus" [value]="status.value">
+                    {{ status.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
           </div>
         </div>
       </form>
